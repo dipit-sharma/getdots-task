@@ -1,12 +1,8 @@
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import MenuIcon from '@mui/icons-material/Menu';
-import PersonIcon from '@mui/icons-material/Person';
 import * as React from 'react';
-import './CustomTabs.css';
-import DropdownMenu from './DropdownMenu.tsx';
 import { useState } from 'react';
 import { tabs } from '../constants/tabs.tsx';
+import './CustomTabs.css';
+import DropdownMenu from './DropdownMenu.tsx';
 
 interface TabProps {
   label: string;

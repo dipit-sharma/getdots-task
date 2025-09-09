@@ -1,15 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
+import React, { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import './DropdownMenu.css';
-
-interface MenuItem {
-  id: string;
-  label: string;
-  icon: React.ReactElement;
-  enabled: boolean;
-  disabled?: boolean;
-}
 
 interface ToggleSwitchProps {
   checked: boolean;
