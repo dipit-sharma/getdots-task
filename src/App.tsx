@@ -1,11 +1,11 @@
-import './App.css';
 import React from 'react';
-import SearchBar from './components/SearchBar.tsx';
+import './App.css';
+import CustomSearchBar from './components/CustomSearchBar.tsx';
 
 function App() {
   return (
     <div>
-      <SearchBar />
+      <CustomSearchBar />
     </div>
   );
 }

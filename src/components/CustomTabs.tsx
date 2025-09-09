@@ -1,8 +1,12 @@
-import { ImportContactsTwoTone } from '@mui/icons-material';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import * as React from 'react';
 import './CustomTabs.css';
+import DropdownMenu from './DropdownMenu.tsx';
+import { useState } from 'react';
+import { tabs } from '../constants/tabs.tsx';
 
 interface TabProps {
   label: string;
@@ -35,33 +39,29 @@ const CustomTab: React.FC<TabProps> = ({ label, icon, iconPosition = 'start', is
   );
 };
 
-export default function CustomTabs(props: { value: number, handleChange: (newValue: number) => void }) {
-    const { value, handleChange } = props;
+export default function CustomTabs(props: { value: string, handleChange: (newValue: string) => void }) {
+  const { value, handleChange } = props;
+  const [menuItems, setMenuItems] = useState(tabs);
 
   return (
     <div className="custom-tabs" role="tablist" aria-label="ant example">
-      <div className="tabs-container">
-        <CustomTab
-          label="All"
-          isSelected={value === 0}
-          onClick={() => handleChange(0)}
-        />
-        <CustomTab
-          label="Files"
-          icon={<AttachFileIcon />}
-          iconPosition="end"
-          isSelected={value === 1}
-          onClick={() => handleChange(1)}
-        />
-        <CustomTab
-          label="People"
-          icon={<PersonIcon />}
-          iconPosition="end"
-          isSelected={value === 2}
-          onClick={() => handleChange(2)}
-        />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div className="tabs-container">
+          {menuItems.map((item, idx) => (
+            item.enabled && (
+              <CustomTab
+                key={item.id}
+                label={item.label}
+                icon={item.icon}
+                iconPosition="end"
+                isSelected={value === item.id}
+                onClick={() => handleChange(item.id)}
+              />
+            )
+          ))}
+        </div>
+        <DropdownMenu value={value} menuItems={menuItems} setMenuItems={setMenuItems} />
       </div>
-      <div className="tabs-indicator" style={{ transform: `translateX(${value * 100}%)` }} />
     </div>
   );
 }
